@@ -80,7 +80,7 @@ function Upload(){
         signInWithEmailAndPassword(auth,details.Username,details.Password)
         .then((userCredential) => {
             console.log(userCredential)
-            window.location="/"
+            window.location="/Tiet-x-Change"
         })
         .catch((error) => {
             console.log(error);
