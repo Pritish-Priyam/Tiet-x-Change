@@ -44,7 +44,7 @@ function Products(){
             if(curr != null && curr.ProductName != "" && items.indexOf(curr) === index)
             {   
                 return (
-                    <Card key={index} title={curr.ProductName} desc={curr.Description} numb={curr.Insta} ></Card>
+                    <Card key={index} title={curr.ProductName} desc={curr.Description} insta={curr.Insta} ></Card>
             );}
         }
 
