@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Tiet-x-Change/static/css/main.d7675bd3.css",
-    "main.js": "/Tiet-x-Change/static/js/main.b5c9ba9e.js",
+    "main.js": "/Tiet-x-Change/static/js/main.553c09b9.js",
     "static/js/787.cc4f6b81.chunk.js": "/Tiet-x-Change/static/js/787.cc4f6b81.chunk.js",
     "static/media/carousel_img5.jpg": "/Tiet-x-Change/static/media/carousel_img5.3b9678dfb208a819b585.jpg",
     "static/media/carousel_img2.jpg": "/Tiet-x-Change/static/media/carousel_img2.d3adce31a5f1a16a502d.jpg",
@@ -10,11 +10,11 @@
     "static/media/carousel_img1.jpg": "/Tiet-x-Change/static/media/carousel_img1.64d8589dc48c72d9a061.jpg",
     "index.html": "/Tiet-x-Change/index.html",
     "main.d7675bd3.css.map": "/Tiet-x-Change/static/css/main.d7675bd3.css.map",
-    "main.b5c9ba9e.js.map": "/Tiet-x-Change/static/js/main.b5c9ba9e.js.map",
+    "main.553c09b9.js.map": "/Tiet-x-Change/static/js/main.553c09b9.js.map",
     "787.cc4f6b81.chunk.js.map": "/Tiet-x-Change/static/js/787.cc4f6b81.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d7675bd3.css",
-    "static/js/main.b5c9ba9e.js"
+    "static/js/main.553c09b9.js"
   ]
 }
