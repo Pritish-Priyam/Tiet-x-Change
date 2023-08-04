@@ -20,9 +20,10 @@
 }
 
 .Card{
-    background-color: rgba(53, 51, 51, 0.678);
+    background-color: rgba(34, 56, 75, 0.816);
     backdrop-filter: blur(20px);
     background-image: url("./images/Waihou.png");
+    background-size: auto;
     margin: 10px;
     min-height: fit-content;
     height: 340px;
@@ -74,7 +75,7 @@
 .PriceText{
     font-size: 1.1rem;
     font-family: 'Titillium Web',monospace;
-    display: inh;
+    
 }
 
 .heading{

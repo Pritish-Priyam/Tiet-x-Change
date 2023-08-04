@@ -10,7 +10,7 @@ function Products(){
         
         const [items, setData] = useState([]);
         const [val,setVal] = useState("");
-        const [uniqueData,setUnique] = useState([]);
+
         useEffect(() => {
         AOS.init();
         //const items = [];
@@ -21,6 +21,7 @@ function Products(){
 
         .then((snapshot) => {
             snapshot.forEach(childSnapshot => {
+                
                 if(childSnapshot.val() !== null && items.includes(childSnapshot.val()) == false)
                 {   console.log(childSnapshot.val());
                     setData(prevItems => {
@@ -29,10 +30,8 @@ function Products(){
                 setData(items => {
                     return  items.filter((curr,index) => items.indexOf(curr) === index)});
                 }) 
-
-           
+                
             })
-            
             
         },
         []);
@@ -42,9 +41,8 @@ function Products(){
         
         
        function createCard(curr,index){
-            if(curr != null && curr.ProductName != "")
+            if(curr != null && curr.ProductName != "" && items.indexOf(curr) === index)
             {   
-                
                 return (
                     <Card key={index} title={curr.ProductName} desc={curr.Description} numb={curr.PhoneNo} ></Card>
             );}
