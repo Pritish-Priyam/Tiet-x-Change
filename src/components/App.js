@@ -10,7 +10,7 @@ import Help from "./Help";
 function App() {
   return (
     <Routes>
-      <Route exact path="/" element={<MainPage />} />
+      <Route exact path="/Tiet-x-Change" element={<MainPage />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/upload" element={<Upload />}/>
