@@ -26,7 +26,7 @@ function Upload(){
             Password: "",
             ProductName:"",
             Description:"",
-            PhoneNo:"",
+            Insta:"",
         }
     )
 
@@ -56,7 +56,7 @@ function Upload(){
     const PostData = async(e)=>{
         e.preventDefault();
 
-        const {Name,Username,Password,ProductName,Description,PhoneNo} = details;
+        const {Name,Username,Password,ProductName,Description,Insta} = details;
         const res = await fetch("https://tiet-xchange-default-rtdb.firebaseio.com/UploadResult.json",
         {
             method: 'POST',
@@ -64,7 +64,7 @@ function Upload(){
                 'Content-Type': 'application/json'
             },
             body:JSON.stringify({
-                Name,ProductName,Username,Password,Description,PhoneNo
+                Name,ProductName,Username,Password,Description,Insta
             })
         });
 
@@ -110,11 +110,11 @@ function Upload(){
                 />
             
 
-                <label htmlFor="Phone">Phone no</label>
-                <input className="inpData" type="phone" placeholder="Mobile number" id="username"
+                <label htmlFor="Insta">Insta ID</label>
+                <input className="inpData" type="text" placeholder="Instagram ID" id="username"
                 onChange={(e)=>
-                    setDetails({...details,PhoneNo:e.target.value})}
-                value={details.PhoneNo} 
+                    setDetails({...details,Insta:e.target.value})}
+                value={details.Insta} 
                 />
 
                 <label htmlFor="password">Product Name</label>

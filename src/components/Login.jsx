@@ -6,8 +6,6 @@ import {auth} from "./Firebase";
 
 function Login(){
 
-        
-
         const [details, setDetails] = useState(
             {
     
@@ -95,7 +93,9 @@ function Login(){
                     setDetails({...details,Password:e.target.value})}
                     value={details.Password}
                 />
+
             </div>
+
             <button className="RegBtn" onClick={handleSubmit}>Login</button>
             <div class="register">
                 <h4 className="Text">New to xChange? Then sign up <Link to="/register"><a>here</a></Link></h4>
