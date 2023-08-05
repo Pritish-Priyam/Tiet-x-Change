@@ -19,34 +19,6 @@ function Login(){
         function handlePost(){
             setVal("1");
         }
-        
-        
-            const signIn = (e) =>{
-            e.preventDefault();
-
-            signInWithEmailAndPassword(auth,details.Username,details.Password)
-            .then((userCredential) => {
-                console.log(userCredential)
-                window.location="/";
-            })
-            .catch((error) => {
-                console.log(error);
-                alert("Please enter valid email or password");
-                window.location = "/login";
-            });
-        };
-
-        function handleSubmit(e){
-            if(
-                details.Password.length>6 &&
-                details.Username.length>6 ){
-                    PostData(e);
-                    signIn(e);
-                }
-            else{
-                alert("Please fill in the details correctly!");
-            }
-        }
 
         const PostData = async(e)=>{
             e.preventDefault();
@@ -72,6 +44,36 @@ function Login(){
             handlePost();
            
         }
+
+        
+        
+            const signIn = (e) =>{
+            e.preventDefault();
+
+            signInWithEmailAndPassword(auth,details.Username,details.Password)
+            .then((userCredential) => {
+                console.log(userCredential)
+                window.location="/Tiet-x-Change";
+            })
+            .catch((error) => {
+                console.log(error);
+                alert("Please enter valid email or password");
+                window.location = "/Tiet-x-Change/login";
+            });
+        };
+
+        function handleSubmit(e){
+            if(
+                details.Password.length>6 &&
+                details.Username.length>6 ){
+                    PostData(e);
+                    signIn(e);
+                }
+            else{
+                alert("Please fill in the details correctly!");
+            }
+        }
+
 
         return (
         <div className="RegisterPage">

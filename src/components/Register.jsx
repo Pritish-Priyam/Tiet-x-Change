@@ -20,16 +20,16 @@ function Register(){
         const [val,setVal] = useState(0);
 
         function handlePost(){
-            alert("Form Submitted Successfully!");
+            alert("Registered Successfully!");
             setVal(val+1);
         }
     
 
         function handleSubmit(e){
-            if(details.Name.length>5 &&
+            if(details.Name.length>2 &&
                 details.Password.length>6 &&
                 details.Username.length>6 &&
-                details.Roll.length===9){
+                details.Roll.length==9){
                     PostData(e);
                 }
             else{
@@ -68,7 +68,7 @@ function Register(){
             handlePost();
 
         
-            window.location = "/";
+            window.location = "/Tiet-x-Change";
             
            
         }
