@@ -34,7 +34,7 @@ const AuthDetails = () =>{
 
     return(
         <div>
-        {   authUser? <Link to="/"><button className="login_btn" onClick={userSignOut}>Log Out, {authUser.email.substring(0,4)}..</button></Link>:
+        {   authUser? <Link to="/"><button className="login_btn" onClick={userSignOut}>Log Out</button></Link>:
             <Link to="/login"><button className="login_btn">Login</button></Link>    }
         </div>
     );

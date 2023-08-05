@@ -2,24 +2,19 @@ import React, { useEffect } from "react";
 import "./Register.css";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import {auth} from "./Firebase";
+import { auth } from "./Firebase";
 import { storage } from "./Firebase";
-import { ref,uploadBytes,listAll,getDownloadURL } from "firebase/storage";
-import {v4} from "uuid";
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
+import { Link } from "react-router-dom";
 
 function Upload(){
 
-    const [ImgUpload,SetImg] = useState([])
+    const [ImgUpload,SetImg] = useState(null)
     const [imgList,setImgList] = useState([])
-    
+    const imgListRef = ref(storage,'images/');
     const [file, setFile] = useState();
-    function handleChange(e) {
-        console.log(e.target.files);
-        setFile(URL.createObjectURL(e.target.files[0]));
-    }
- 
-
-    const imgListRef = ref(storage,"images/");
+   
     const [details, setDetails] = useState(
         {
             Username: "",
@@ -32,14 +27,14 @@ function Upload(){
 
 
     const uploadImg = () => {
-        if(ImgUpload === null)
+        if(ImgUpload == null)
             return;
-        const imgRef = ref(storage,"images/$ {ImgUpload.name} + Math.random(100)" );
+        const imgRef = ref(storage,"images/");
         uploadBytes(imgRef,ImgUpload).then(() => {
-            /*getDownloadURL(snapshot.ref).then((url)=>{
-                setImgList((prev) => [...prev,url])
-            })*/
-            alert("Image Uploaded");            
+            //getDownloadURL(snapshot.ref).then((url)=>{
+                
+            //})
+            alert("Image Uploaded !");            
         })
     }
 
@@ -47,15 +42,16 @@ function Upload(){
         listAll(imgListRef).then((response) => {
             response.items.forEach((item) => {
                 getDownloadURL(item).then((url) => {
+                    console.log(url);
                     setImgList((prev) => [...prev,url]);
                     })
                 })
             })
-    },[])
+    },[]);
 
     const PostData = async(e)=>{
         e.preventDefault();
-
+        uploadImg();
         const {Name,Username,Password,ProductName,Description,Insta} = details;
         const res = await fetch("https://tiet-xchange-default-rtdb.firebaseio.com/UploadResult.json",
         {
@@ -76,7 +72,7 @@ function Upload(){
 
     const signIn = (e) =>{
         e.preventDefault();
-
+        
         signInWithEmailAndPassword(auth,details.Username,details.Password)
         .then((userCredential) => {
             console.log(userCredential)
@@ -111,7 +107,7 @@ function Upload(){
             
 
                 <label htmlFor="Insta">Insta ID</label>
-                <input className="inpData" type="text" placeholder="Instagram ID" id="username"
+                <input className="inpData" type="text" placeholder="Instagram ID" id="insta_user"
                 onChange={(e)=>
                     setDetails({...details,Insta:e.target.value})}
                 value={details.Insta} 
@@ -127,7 +123,8 @@ function Upload(){
 
                 <label htmlFor="images">Upload</label>
                 <input className="inpData" type="file" accept="image/*" multiple="multiple" 
-                placeholder="Upload Product images" id="prodImg" onChange={handleChange}
+                placeholder="Upload Product images" id="prodImg" 
+                onChange={(event) => {SetImg(event.target.files[0])}}
                 />
                 
                 <label htmlFor="Product Description">Product Description</label>
@@ -140,7 +137,7 @@ function Upload(){
             </div>
             <button className="RegBtn" onClick={PostData}>Upload</button>
             <div class="register">
-                <h4 className="Text">New to xChange? Then sign up <a href="C:\Users\PRITISH\tiet-x-change\public\register.html">here</a></h4>
+                <h4 className="Text">New to xChange? Then sign up <Link to="/register"><a style={{textDecoration: "underline"}}>here</a></Link></h4>
             </div>
             
             </form>

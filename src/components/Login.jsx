@@ -98,7 +98,7 @@ function Login(){
 
             <button className="RegBtn" onClick={handleSubmit}>Login</button>
             <div class="register">
-                <h4 className="Text">New to xChange? Then sign up <Link to="/register"><a>here</a></Link></h4>
+                <h4 className="Text">New to xChange? Then sign up <Link to="/register"><a style={{textDecoration: "underline"}}>here</a></Link></h4>
             </div>
             </form>
         </div>

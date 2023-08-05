@@ -112,7 +112,7 @@ function Register(){
             </div>
             <button className="RegBtn" onClick={handleSubmit}>Register</button>
             <div class="register">
-                <h4 className="Text">Already a member. Then login <Link to="/login"><a>here</a></Link></h4>
+                <h4 className="Text">Already a member. Then login <Link to="/login"><a style={{textDecoration: "underline"}}>here</a></Link></h4>
             </div>
             </form>
         </div>

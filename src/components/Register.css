@@ -144,32 +144,39 @@ label{
 
 
 @media screen and (max-width: 992px) {
-
+    .RegisterPage{
+        height: fit-content;
+        min-height: 115vh;
+        position: absolute;
+    }
 
     .formReg{
         height: fit-content;
         padding: 3.2vh 3.2vh;
         max-width: 90vw;
         row-gap: 4px;
+        transform: translate(-50%,-50%);
+        top: 50%;
+        left: 50%;
     }
 
     form h3{
-        font-size: 2.3rem;
+        font-size: 42px;
         margin-bottom: 8px;
     }
 
     .RegBtn{
-        font-size: 1.05rem;
+        font-size: 18px;
     }
 
     .inpData{
-        font-size: 1.0rem;
+        font-size: 18px;
         padding: 15px;
         margin-top: 5px;
     }
 
     label{
-        font-size: 1.0rem;
+        font-size: 16px;
         margin-top: 6px;
     }
 
