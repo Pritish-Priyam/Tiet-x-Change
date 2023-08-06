@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Carousel(){
     return (
@@ -15,7 +16,7 @@ function Carousel(){
                 <div class="carousel-caption text-start">
                     <h1>Stationary and Stuff.</h1>
                     <p>We got you covered.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+                    <p><Link to="/register"><a class="btn btn-lg btn-primary" href="#">Sign up today</a></Link></p>
                 </div>
                 </div>
             </div>
@@ -26,7 +27,7 @@ function Carousel(){
                 <div class="carousel-caption">
                     <h1>Sports equipments.</h1>
                     <p>We got you covered.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                    <p><Link to="/help"><a class="btn btn-lg btn-primary" href="#">Learn more</a></Link></p>
                 </div>
                 </div>
             </div>
@@ -36,7 +37,7 @@ function Carousel(){
                 <div class="carousel-caption text-end">
                     <h1>Gadgets for Geeks.</h1>
                     <p>We got you covered.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                    <p><Link to="/help"><a class="btn btn-lg btn-primary" href="#">FAQs</a></Link></p>
                 </div>
                 </div>
             </div>

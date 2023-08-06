@@ -8,7 +8,7 @@ function Card(props){
     const [state,setState] = useState("none");
     const [val,setVal] = useState("Know more");
     const [disp,setDisp] = useState("block");
-    const [valLink,setLink] = useState("");
+
     function dispDesc(){
         if(val == "Show less"){
             setVal("Know more");
@@ -23,21 +23,16 @@ function Card(props){
     }
     
     return (
-        <div className="CardContainer">
-            <div className="Card" data-aos ="fade-in" data-aos-once = "true"
-                data-aos-duration= "400">
-                {console.log("Link: " + props.store)}
-                <img src={props.store} className="CardImg" style={{aspectRatio:"1"}}/>
-                <div className="PriceWrapper">
-                <h2 className="PriceTitle" style={{display: disp}}>{props.title}</h2>
-                <div className="hiddenDetails" style={{display: state}}>
-                    <h2 className="PriceText" ><span className="heading">Desc:</span> {props.desc}</h2>
-                    <h2 className="PriceText"><span className="heading">Price:</span> $50</h2>
-                    <h2 className="PriceText"><span className="heading">Insta id:</span> {props.insta}</h2>
+        <div className="CardContainer" data-aos="fade-in">
+            <div class="card" style={{width:"19rem"}} >
+                <img src={props.store} class="card-img-top" alt="..." loading="lazy" />
+                <div class="card-body">
+                    <h5 class="card-title ">{props.title}</h5>
+                    <p class="card-text">{props.desc}</p>
+                    <p class="card-text" style={{display:state}}>Insta ID: {props.insta}</p>
+                    <a class="btn btn-primary" onClick={dispDesc}>{val}</a>
                 </div>
                 </div>
-                <button className="CardExpandBtn" onClick={dispDesc}>{val}</button>
-            </div>
         </div>
     );
 }
