@@ -8,6 +8,7 @@ function Card(props){
     const [state,setState] = useState("none");
     const [val,setVal] = useState("Know more");
     const [disp,setDisp] = useState("block");
+    const [valLink,setLink] = useState("");
     function dispDesc(){
         if(val == "Show less"){
             setVal("Know more");
@@ -25,7 +26,8 @@ function Card(props){
         <div className="CardContainer">
             <div className="Card" data-aos ="fade-in" data-aos-once = "true"
                 data-aos-duration= "400">
-                <div className="CardImg"></div>
+                {console.log("Link: " + props.store)}
+                <img src={props.store} className="CardImg" style={{aspectRatio:"1"}}/>
                 <div className="PriceWrapper">
                 <h2 className="PriceTitle" style={{display: disp}}>{props.title}</h2>
                 <div className="hiddenDetails" style={{display: state}}>

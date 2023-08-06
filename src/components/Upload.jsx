@@ -7,12 +7,13 @@ import { storage } from "./Firebase";
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 import { Link } from "react-router-dom";
+import "firebase/storage";
 
 function Upload(){
 
-    const [ImgUpload,SetImg] = useState(null)
+    const [Img,SetImg] = useState(null)
     const [imgList,setImgList] = useState([])
-    const imgListRef = ref(storage,'images/');
+    const imgListRef = ref(storage,"images/");
     const [file, setFile] = useState();
    
     const [details, setDetails] = useState(
@@ -22,54 +23,11 @@ function Upload(){
             ProductName:"",
             Description:"",
             Insta:"",
+            StorageLink:"",
         }
     )
 
-
-    const uploadImg = () => {
-        if(ImgUpload == null)
-            return;
-        const imgRef = ref(storage,"images/");
-        uploadBytes(imgRef,ImgUpload).then(() => {
-            //getDownloadURL(snapshot.ref).then((url)=>{
-                
-            //})
-            alert("Image Uploaded !");            
-        })
-    }
-
-    useEffect(() => {
-        listAll(imgListRef).then((response) => {
-            response.items.forEach((item) => {
-                getDownloadURL(item).then((url) => {
-                    console.log(url);
-                    setImgList((prev) => [...prev,url]);
-                    })
-                })
-            })
-    },[]);
-
-    const PostData = async(e)=>{
-        e.preventDefault();
-        uploadImg();
-        const {Name,Username,Password,ProductName,Description,Insta} = details;
-        const res = await fetch("https://tiet-xchange-default-rtdb.firebaseio.com/UploadResult.json",
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body:JSON.stringify({
-                Name,ProductName,Username,Password,Description,Insta
-            })
-        });
-
-        uploadImg();
-        signIn(e);
-
-    }
-
-
+   
     const signIn = (e) =>{
         e.preventDefault();
         
@@ -81,9 +39,42 @@ function Upload(){
         .catch((error) => {
             console.log(error);
             alert("Please enter valid email or password");
-            window.location = "/Upload";
+            window.location = "/Tiet-x-Change/Upload";
         });
     };
+
+    function handleChange(e){
+        if(e.target.files[0]){
+        const x = `images/${e.target.files[0].name + v4()}`;
+        const imgRef = ref(storage,x);
+        uploadBytes(imgRef,e.target.files[0]).then(() => {
+            console.log(x);
+            setDetails({ ...details, StorageLink:x});
+            console.log("Checking:" + x);
+        })
+    }
+    }
+
+    const PostData = async(e)=>{
+        e.preventDefault();
+        const {Name,Username,Password,ProductName,Description,Insta,StorageLink} = details;
+        const res = await fetch("https://tiet-xchange-default-rtdb.firebaseio.com/UploadResult.json",
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                Name,ProductName,Username,Password,Description,Insta,StorageLink,
+            })
+        });
+
+        signIn(e);
+
+    }
+
+
+   
 
     return(
  
@@ -124,7 +115,7 @@ function Upload(){
                 <label htmlFor="images">Upload</label>
                 <input className="inpData" type="file" accept="image/*" multiple="multiple" 
                 placeholder="Upload Product images" id="prodImg" 
-                onChange={(event) => {SetImg(event.target.files[0])}}
+                onChange={handleChange}
                 />
                 
                 <label htmlFor="Product Description">Product Description</label>
@@ -133,7 +124,6 @@ function Upload(){
                     setDetails({...details,Description:e.target.value})}
                 value={details.Description}
                 />
-            <img className="uploaded_img" src={file} />
             </div>
             <button className="RegBtn" onClick={PostData}>Upload</button>
             <div class="register">
