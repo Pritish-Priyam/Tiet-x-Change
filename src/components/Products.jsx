@@ -10,75 +10,102 @@ import { ref as Ref} from "firebase/storage";
 import { listAll } from "firebase/storage";
 import { getDownloadURL } from "firebase/storage";
 
-function Products(){
-        
-        const [items, setData] = useState([]);
-        const [links,setLinks] = useState([]);
+function Products() {
+  const [items, setItems] = useState([]);
+  const [links, setLinks] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4; // Change this number as desired
+  const [val,setVal] = useState();
 
-        useEffect(() => {
-            AOS.init();
-            const dbRef = ref(database);
-            const fileRef = Ref(storage, `images/`);
-          
-            // Fetch data and image links concurrently using Promise.all
-            Promise.all([
-              get(child(dbRef, "UploadResult/")).then((snapshot) => {
-                const dataItems = [];
-                snapshot.forEach((childSnapshot) => {
-                  if (childSnapshot.val() !== null && !dataItems.includes(childSnapshot.val())) {
-                    dataItems.push(childSnapshot.val());
-                  }
-                });
-                return dataItems;
-              }),
-              listAll(fileRef).then((response) => {
-                const linkPromises = response.items.map((item) => getDownloadURL(item));
-                return Promise.all(linkPromises);
-              }),
-            ])
-              .then(([dataItems, linkArray]) => {
-                // Update state with the fetched data and links
-                setData(dataItems.filter((curr, index) => dataItems.indexOf(curr) === index));
-                setLinks(linkArray.filter((url, index) => url !== null && linkArray.indexOf(url) === index));
-              })
-              .catch((error) => {
-                console.error('Error fetching data and image links:', error);
-              });
-          }, []);
-        
-        /*const getFileDownloadURL = async (fileName) => {
-            
-          
-            try {
-              const downloadURL = await getDownloadURL(fileRef);
-              console.log('File download URL:', downloadURL);
-              // Use the downloadURL to display the file or perform further actions
-              return downloadURL;
-            } catch (error) {
-              console.error('Error getting download URL:', error);
-              return null;
-            }
-          };   */
-        
-        
-       function createCard(curr,index){
-            if(curr != null && curr.ProductName != "" && items.indexOf(curr) === index)
-            {  
-                //const x = getFileDownloadURL(curr.StorageLink);
-                return (
-                    <Card key={index} title={curr.ProductName} desc={curr.Description} insta={curr.Insta}
-                    store={links[index]} ></Card>
-            );}
+  useEffect(() => {
+    AOS.init();
+    fetchDataAndLinks();
+  }, []);
+
+  const fetchDataAndLinks = async () => {
+    const dbRef = ref(database);
+    const fileRef = Ref(storage, `images/`);
+
+    try {
+      const [dataSnapshot, fileResponse] = await Promise.all([
+        get(child(dbRef, "UploadResult/")),
+        listAll(fileRef).then((response) => Promise.all(response.items.map((item) => getDownloadURL(item))))
+      ]);
+
+      const dataItems = [];
+      dataSnapshot.forEach((childSnapshot) => {
+        if (childSnapshot.exists() && !dataItems.includes(childSnapshot.val())) {
+          dataItems.push(childSnapshot.val());
         }
+      });
 
-        return (
-                <div className="products">
-                {  
-                    items.map(createCard)
-                }
-                </div>
-        );
+      const filteredLinks = fileResponse.filter((url, index) => url !== null && fileResponse.indexOf(url) === index);
 
+      setItems(dataItems.filter((curr, index) => dataItems.indexOf(curr) === index));
+      setLinks(filteredLinks);
+    } catch (error) {
+      console.error('Error fetching data and image links:', error);
+    }
+  };
+
+  const getPaginatedItems = (items, currentPage, itemsPerPage) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return items.slice(startIndex, endIndex);
+  };
+
+  const handleNextPage = () => {
+    const totalPages = Math.ceil(items.length / itemsPerPage);
+    if (currentPage < totalPages) {
+      const nextPage = currentPage + 1;
+      const paginatedItems = getPaginatedItems(items, nextPage, itemsPerPage);
+  
+      // Add a short delay (e.g., 1000ms) before fetching the image URLs
+      setTimeout(() => {
+        Promise.all(
+          paginatedItems.map((item) => getDownloadURL(Ref(storage, item.StorageLink)))
+        ).then((linkArray) => {
+          setLinks(linkArray);
+          setCurrentPage(nextPage);
+        });
+      }, 100);
+    }
+  };
+
+  let x = items.length/itemsPerPage;
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      const prevPage = currentPage - 1;
+      const paginatedItems = getPaginatedItems(items, prevPage, itemsPerPage);
+  
+      // Add a short delay (e.g., 1000ms) before fetching the image URLs
+      setTimeout(() => {
+        Promise.all(
+          paginatedItems.map((item) => getDownloadURL(Ref(storage, item.StorageLink)))
+        ).then((linkArray) => {
+          setLinks(linkArray);
+          setCurrentPage(prevPage);
+        });
+      }, 100);
+    }
+  };
+  
+
+  return (
+    <div className="products">
+      {getPaginatedItems(items, currentPage, itemsPerPage).map((item, index) => (
+        <Card key={index} title={item.ProductName} desc={item.Description} insta={item.Insta} store={links[index]} />
+      ))}
+      <div className="pagination">
+        <button onClick={handlePreviousPage} disabled={currentPage === 1} className="btn bg-light">Prev.</button>
+        <button className="btn btn-dark">{currentPage}/{x}</button>
+        <button onClick={handleNextPage} className="btn bg-light" disabled={currentPage === Math.ceil(items.length / itemsPerPage)}>Next</button>
+      </div>
+    </div>
+  );
 }
+
+
 
 export default Products;

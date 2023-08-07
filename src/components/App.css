@@ -197,6 +197,15 @@ a:hover{
   padding-top: 10px;
 }
 
+.pagination{
+  margin-top: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+}
+
 .footer_style{
   background-color: #1a1d21;
   

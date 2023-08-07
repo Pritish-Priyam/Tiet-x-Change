@@ -85,6 +85,15 @@ function Upload(){
  
         <div className="RegisterPage">
             <form className="formReg">
+                <div class="alert alert-danger alert-dismissible show">
+                    <strong>Alert!</strong> Please ensure you have already signed up.
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert">
+                    </button>
+                </div>
+
             <h3>Welcome</h3>
             <div>
                 <label htmlFor="username">Username</label>
