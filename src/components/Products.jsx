@@ -15,7 +15,6 @@ function Products() {
   const [links, setLinks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 16; // Change this number as desired
-  const [val,setVal] = useState();
 
   useEffect(() => {
     AOS.init();
@@ -73,6 +72,8 @@ function Products() {
   };
 
   let x = Math.ceil(items.length/itemsPerPage);
+  if(x == 0)
+    x = 1;
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {

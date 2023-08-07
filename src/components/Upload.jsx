@@ -11,10 +11,7 @@ import imageCompression from "browser-image-compression";
 
 function Upload(){
 
-    const [Img,SetImg] = useState(null)
-    const [imgList,setImgList] = useState([])
     const imgListRef = ref(storage,"images/");
-    const [file, setFile] = useState();
     const [val,setVal] = useState(0);
    
     const [details, setDetails] = useState(
@@ -92,13 +89,9 @@ function Upload(){
 
     }
 
-
-   
-
     return(
  
         <div className="RegisterPage">
-            <form className="formReg">
                 <div class="alert alert-danger alert-dismissible show">
                     <strong>Alert!</strong> Please ensure you have already signed up.
                     <button
@@ -107,7 +100,7 @@ function Upload(){
                         data-bs-dismiss="alert">
                     </button>
                 </div>
-
+            <form className="formReg">
             <h3>Welcome</h3>
             <div>
                 <label htmlFor="username">Username</label>
@@ -115,6 +108,7 @@ function Upload(){
                     onChange={(e)=>
                     setDetails({...details,Username:e.target.value})}
                 value={details.Username}
+                required
                 />
 
                 <label htmlFor="password">Password</label>
@@ -122,6 +116,7 @@ function Upload(){
                     onChange={(e)=>
                     setDetails({...details,Password:e.target.value})}
                 value={details.Password}
+                required
                 />
             
 
@@ -130,13 +125,16 @@ function Upload(){
                 onChange={(e)=>
                     setDetails({...details,Insta:e.target.value})}
                 value={details.Insta} 
+                required
                 />
 
                 <label htmlFor="password">Product Name</label>
                 <input className="inpData" type="text" placeholder="What are you selling?" maxLength="50" id="productName"
                  onChange={(e)=>
                     setDetails({...details,ProductName:e.target.value})}
-                value={details.ProductName} />
+                value={details.ProductName} 
+                required
+                />
 
                 
 
@@ -144,6 +142,7 @@ function Upload(){
                 <input className="inpData" type="file" accept="image/*" multiple="multiple" 
                 placeholder="Upload Product images" id="prodImg" 
                 onChange={handleChange}
+                required
                 />
                 
                 <label htmlFor="Product Description">Product Description</label>
@@ -151,6 +150,7 @@ function Upload(){
                 placeholder="Something to let the buyers know" onChange={(e)=>
                     setDetails({...details,Description:e.target.value})}
                 value={details.Description}
+                required
                 />
             </div>
             <button className="RegBtn" onClick={PostData}>Upload</button>
