@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Tiet-x-Change/static/css/main.2241a5ba.css",
-    "main.js": "/Tiet-x-Change/static/js/main.2046608f.js",
+    "main.css": "/Tiet-x-Change/static/css/main.536dc4ef.css",
+    "main.js": "/Tiet-x-Change/static/js/main.09ccc989.js",
     "static/js/787.cc4f6b81.chunk.js": "/Tiet-x-Change/static/js/787.cc4f6b81.chunk.js",
     "static/media/carousel_img5.jpg": "/Tiet-x-Change/static/media/carousel_img5.3b9678dfb208a819b585.jpg",
     "static/media/carousel_img2.jpg": "/Tiet-x-Change/static/media/carousel_img2.d3adce31a5f1a16a502d.jpg",
@@ -9,12 +9,12 @@
     "static/media/Waihou.png": "/Tiet-x-Change/static/media/Waihou.bd4de270160fa70c9a34.png",
     "static/media/carousel_img1.jpg": "/Tiet-x-Change/static/media/carousel_img1.64d8589dc48c72d9a061.jpg",
     "index.html": "/Tiet-x-Change/index.html",
-    "main.2241a5ba.css.map": "/Tiet-x-Change/static/css/main.2241a5ba.css.map",
-    "main.2046608f.js.map": "/Tiet-x-Change/static/js/main.2046608f.js.map",
+    "main.536dc4ef.css.map": "/Tiet-x-Change/static/css/main.536dc4ef.css.map",
+    "main.09ccc989.js.map": "/Tiet-x-Change/static/js/main.09ccc989.js.map",
     "787.cc4f6b81.chunk.js.map": "/Tiet-x-Change/static/js/787.cc4f6b81.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2241a5ba.css",
-    "static/js/main.2046608f.js"
+    "static/css/main.536dc4ef.css",
+    "static/js/main.09ccc989.js"
   ]
 }
