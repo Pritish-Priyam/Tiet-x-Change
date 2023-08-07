@@ -14,7 +14,7 @@ function Products() {
   const [items, setItems] = useState([]);
   const [links, setLinks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4; // Change this number as desired
+  const itemsPerPage = 16; // Change this number as desired
   const [val,setVal] = useState();
 
   useEffect(() => {
@@ -72,7 +72,7 @@ function Products() {
     }
   };
 
-  let x = items.length/itemsPerPage;
+  let x = Math.ceil(items.length/itemsPerPage);
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
@@ -98,8 +98,8 @@ function Products() {
         <Card key={index} title={item.ProductName} desc={item.Description} insta={item.Insta} store={links[index]} />
       ))}
       <div className="pagination">
-        <button onClick={handlePreviousPage} disabled={currentPage === 1} className="btn bg-light">Prev.</button>
-        <button className="btn btn-dark">{currentPage}/{x}</button>
+        <button onClick={handlePreviousPage} disabled={currentPage === 1} className="btn bg-light">Prev</button>
+        <button className="btn btn-info">Page {currentPage} of {x}</button>
         <button onClick={handleNextPage} className="btn bg-light" disabled={currentPage === Math.ceil(items.length / itemsPerPage)}>Next</button>
       </div>
     </div>

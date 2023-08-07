@@ -7,7 +7,7 @@ function Help(){
     <div className="faqContainer">
       <h1 className="faqTitle animate-character">FAQ</h1>
       <div className="faqWrapper">
-      <div class="card  mb-3" style={{maxWidth: "19rem"}}>
+      <div class="card ccardH mb-3" style={{maxWidth: "19rem"}}>
         <div class="card-header h5">What is TIETxChange?</div>
         <div class="card-body">
 
@@ -17,7 +17,7 @@ function Help(){
         </div>
       </div>
 
-      <div class="card  mb-3" style={{maxWidth: "19rem"}}>
+      <div class="card cardH  mb-3" style={{maxWidth: "19rem"}}>
         <div class="card-header h5">How can I sign up for TIETxChange?</div>
         <div class="card-body">
           <p class="card-text">To sign up for TIETxChange, you need to visit our website and click on the "Sign Up" button. 
@@ -26,7 +26,7 @@ function Help(){
         </div>
       </div>
 
-      <div class="card  mb-3" style={{maxWidth: "19rem"}}>
+      <div class="card cardH mb-3" style={{maxWidth: "19rem"}}>
         <div class="card-header h5">How do I contact a seller to purchase a product?</div>
         <div class="card-body">
           <p class="card-text">When you find a product you're interested in buying on TIETxChange, 
@@ -35,7 +35,7 @@ function Help(){
         </div>
       </div>
 
-      <div class="card  mb-3" style={{maxWidth: "19rem"}}>
+      <div class="card cardH mb-3" style={{maxWidth: "19rem"}}>
         <div class="card-header h5">How do I contact a seller to purchase a product?</div>
         <div class="card-body">
           <p class="card-text">When you find a product you're interested in buying on TIETxChange, 

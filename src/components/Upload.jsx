@@ -4,10 +4,10 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./Firebase";
 import { storage } from "./Firebase";
-import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
-import { v4 } from "uuid";
+import { ref, uploadBytes} from "firebase/storage";
 import { Link } from "react-router-dom";
 import "firebase/storage";
+import imageCompression from "browser-image-compression";
 
 function Upload(){
 
@@ -50,11 +50,25 @@ function Upload(){
         const y = new Date().getTime();
         const x = `images/${y}`;
         const imgRef = ref(storage,x);
-        uploadBytes(imgRef,e.target.files[0]).then(() => {
-            console.log(x);
-            setDetails({ ...details, StorageLink:x});
-            console.log("Checking:" + x);
+
+         // Compress the image before uploading
+        const options = {
+            maxSizeMB: 2, // Set the maximum size in MB
+            maxWidthOrHeight: 800, // Set the maximum width or height
+            useWebWorker: true, // Enable web worker for faster processing
+        };
+
+
+        imageCompression(e.target.files[0], options)
+        .then((compressedFile) => {
+          uploadBytes(imgRef, compressedFile).then(() => {
+            console.log('Compressed file uploaded:', x);
+            setDetails({ ...details, StorageLink: x });
+          });
         })
+        .catch((error) => {
+          console.error('Error compressing image:', error);
+        });
     }
     }
 
