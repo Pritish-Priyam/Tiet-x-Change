@@ -15,6 +15,7 @@ function Upload(){
     const [imgList,setImgList] = useState([])
     const imgListRef = ref(storage,"images/");
     const [file, setFile] = useState();
+    const [val,setVal] = useState(0);
    
     const [details, setDetails] = useState(
         {
@@ -33,11 +34,12 @@ function Upload(){
         
         signInWithEmailAndPassword(auth,details.Username,details.Password)
         .then((userCredential) => {
-            console.log(userCredential)
-            window.location="/Tiet-x-Change"
+            console.log(userCredential);
+            setVal(1);
         })
         .catch((error) => {
             console.log(error);
+            setVal(0);
             alert("Please enter valid email or password");
             window.location = "/Tiet-x-Change/Upload";
         });
@@ -60,6 +62,7 @@ function Upload(){
         e.preventDefault();
         signIn(e);
         const {Name,Username,Password,ProductName,Description,Insta,StorageLink} = details;
+        if(val == 1){
         const res = await fetch("https://tiet-xchange-default-rtdb.firebaseio.com/UploadResult.json",
         {
             method: 'POST',
@@ -71,6 +74,7 @@ function Upload(){
             })
         });
 
+        window.location="/Tiet-x-Change"; }
 
     }
 

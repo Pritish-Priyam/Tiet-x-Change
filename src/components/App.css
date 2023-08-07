@@ -191,7 +191,7 @@ a:hover{
   padding-inline-start: 35px;
   column-gap: 25px;
   padding-bottom: 60px;
-  row-gap: 20px;
+  row-gap: 35px;
   border-top: 2px solid white;
   margin: 0;
   padding-top: 10px;
@@ -313,19 +313,19 @@ a:hover{
     padding-bottom: 20px;
   }
   .upload_btn{
-    font-size: 20px;
+    font-size: 18px;
     width: fit-content;
     padding: 0px 10px;
   }
 
   .login_btn{
     width: fit-content;
-    font-size: 20px;
+    font-size: 18px;
   }
   
   .NavBtn{
     width: fit-content;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   
