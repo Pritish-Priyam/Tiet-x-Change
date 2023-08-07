@@ -142,7 +142,7 @@ a:hover{
 }
 
 .carousel{
-  background-color: var(--black);
+  background-color: #031a2b;
   overflow-x: hidden;
 }
 
@@ -288,6 +288,7 @@ a:hover{
 }
 
 @media screen and (max-width: 992px) {
+  
   .extra_icons{
     display: none;
   }
