@@ -50,8 +50,8 @@ function Upload(){
 
          // Compress the image before uploading
         const options = {
-            maxSizeMB: 2, // Set the maximum size in MB
-            maxWidthOrHeight: 800, // Set the maximum width or height
+            maxSizeMB: 1, // Set the maximum size in MB
+            maxWidthOrHeight: 400, // Set the maximum width or height
             useWebWorker: true, // Enable web worker for faster processing
         };
 

@@ -4,7 +4,7 @@ import "./App.css";
 import { useEffect } from "react";
 import AuthDetails from "./AuthDetails";
 import Card from "./Card";
-import AOS from "aos";
+
 
 const x = document.querySelector("[prod-data]")
 

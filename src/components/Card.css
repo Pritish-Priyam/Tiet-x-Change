@@ -56,7 +56,6 @@
 .Card{
     background-color: rgba(3, 31, 85, 0.816);
     backdrop-filter: blur(20px);
-    background-image: url("./images/Waihou.png");
     background-size: auto;
     margin: 10px;
     /*min-height: fit-content;*/
