@@ -45,7 +45,8 @@ function Upload(){
 
     function handleChange(e){
         if(e.target.files[0]){
-        const x = `images/${e.target.files[0].name + v4()}`;
+        const y = new Date().getTime();
+        const x = `images/${y}`;
         const imgRef = ref(storage,x);
         uploadBytes(imgRef,e.target.files[0]).then(() => {
             console.log(x);
