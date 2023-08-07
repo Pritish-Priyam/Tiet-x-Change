@@ -13,45 +13,38 @@ import { getDownloadURL } from "firebase/storage";
 function Products(){
         
         const [items, setData] = useState([]);
-        const [links,setLinks] = useState("");
+        const [links,setLinks] = useState([]);
 
         useEffect(() => {
-        AOS.init();
-        //const items = [];
-        const dbRef = ref(database);
-        
-
-        get(child(dbRef,"UploadResult/"))
-
-        .then((snapshot) => {
-            snapshot.forEach(childSnapshot => {
-                
-                if(childSnapshot.val() !== null && items.includes(childSnapshot.val()) == false)
-                {   console.log(childSnapshot.val());
-                    setData(prevItems => {
-                            return [...prevItems,childSnapshot.val()]});
-                }
-                setData(items => {
-                    return  items.filter((curr,index) => items.indexOf(curr) === index)});
-                }) 
-                
-            })
-            
-        },
-        []);
-
-        const fileRef = Ref(storage, `images/`);
-
-        useEffect(() => {
-            listAll(fileRef).then((response) => {
-                response.items.forEach((item) => {
-                getDownloadURL(item).then((url) => {
-                    setLinks((prev) => [...prev,url]);
-                })
-            })
-         })
-        },[]);
-
+            AOS.init();
+            const dbRef = ref(database);
+            const fileRef = Ref(storage, `images/`);
+          
+            // Fetch data and image links concurrently using Promise.all
+            Promise.all([
+              get(child(dbRef, "UploadResult/")).then((snapshot) => {
+                const dataItems = [];
+                snapshot.forEach((childSnapshot) => {
+                  if (childSnapshot.val() !== null && !dataItems.includes(childSnapshot.val())) {
+                    dataItems.push(childSnapshot.val());
+                  }
+                });
+                return dataItems;
+              }),
+              listAll(fileRef).then((response) => {
+                const linkPromises = response.items.map((item) => getDownloadURL(item));
+                return Promise.all(linkPromises);
+              }),
+            ])
+              .then(([dataItems, linkArray]) => {
+                // Update state with the fetched data and links
+                setData(dataItems.filter((curr, index) => dataItems.indexOf(curr) === index));
+                setLinks(linkArray.filter((url, index) => url !== null && linkArray.indexOf(url) === index));
+              })
+              .catch((error) => {
+                console.error('Error fetching data and image links:', error);
+              });
+          }, []);
         
         /*const getFileDownloadURL = async (fileName) => {
             

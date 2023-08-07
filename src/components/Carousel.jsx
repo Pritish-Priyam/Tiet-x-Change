@@ -11,7 +11,7 @@ function Carousel(){
             </div>
             <div class="carousel-inner">
             <div class="carousel-item">
-            <img class="bd-placeholder-img img1" width="100%" height="100%" ></img>
+            <img class="bd-placeholder-img img1" width="100%" height="100%"></img>
                 <div class="container">
                 <div class="carousel-caption text-start">
                     <h1>Stationary and Stuff.</h1>
@@ -21,7 +21,7 @@ function Carousel(){
                 </div>
             </div>
             <div class="carousel-item active">
-                <img class="bd-placeholder-img img2" width="100%" height="100%" ></img>
+                <img class="bd-placeholder-img img2" width="100%" height="100%"></img>
 
                 <div class="container">
                 <div class="carousel-caption">
@@ -32,7 +32,7 @@ function Carousel(){
                 </div>
             </div>
             <div class="carousel-item">
-            <img class="bd-placeholder-img img3" width="100%" height="100%" ></img>
+            <img class="bd-placeholder-img img3" width="100%" height="100%"></img>
                 <div class="container">
                 <div class="carousel-caption text-end">
                     <h1>Gadgets for Geeks.</h1>

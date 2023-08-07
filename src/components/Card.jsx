@@ -23,7 +23,7 @@ function Card(props){
     }
     
     return (
-        <div className="CardContainer" data-aos="fade-in">
+        <div className="CardContainer" data-aos="fade-in" data-aos-duration="600">
             <div class="card" style={{width:"19rem"}} >
                 <img src={props.store} class="card-img-top" alt="..." loading="lazy" />
                 <div class="card-body">

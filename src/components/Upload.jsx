@@ -57,6 +57,7 @@ function Upload(){
 
     const PostData = async(e)=>{
         e.preventDefault();
+        signIn(e);
         const {Name,Username,Password,ProductName,Description,Insta,StorageLink} = details;
         const res = await fetch("https://tiet-xchange-default-rtdb.firebaseio.com/UploadResult.json",
         {
@@ -69,7 +70,6 @@ function Upload(){
             })
         });
 
-        signIn(e);
 
     }
 
