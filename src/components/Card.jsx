@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./Card.css";
 import AOS from "aos";
-import { motion } from "framer-motion";
+import { storage } from "./Firebase";
+import { ref as Ref} from "firebase/storage";
+import { listAll } from "firebase/storage";
+import { getDownloadURL } from "firebase/storage";
 
 
 function Card(props){
@@ -25,7 +28,9 @@ function Card(props){
     return (
         <div className="CardContainer" data-aos="fade-in" data-aos-duration="400" data-aos-delay="0">
             <div class="card" style={{width:"19rem"}} >
-                <img src={props.store} class="card-img-top" alt="..." loading="lazy" />
+                <img src={props.store} class="card-img-top" loading="lazy"
+                srcSet={`${props.resized} 880w`}
+                />
                 <div class="card-body">
                     <h5 class="card-title ">{props.title}</h5>
                     <p class="card-text">{props.desc}</p>

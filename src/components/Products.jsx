@@ -13,8 +13,32 @@ import { getDownloadURL } from "firebase/storage";
 function Products() {
   const [items, setItems] = useState([]);
   const [links, setLinks] = useState([]);
+  const [linkvals, setLinkVals] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 16; // Change this number as desired
+
+  
+  useEffect(() => {
+    const folderRef = Ref(storage, `imagesResized/`);
+
+     // List all items (images) in the folder
+    listAll(folderRef)
+    .then((res) => {
+    // Get download URLs for each image
+    const downloadURLPromises = res.items.map((item) => getDownloadURL(item));
+
+    // Wait for all the download URL promises to resolve
+    return Promise.all(downloadURLPromises);
+    })
+    .then((downloadURLs) => {
+    // Set the download URLs in the state
+    const filteredLinks = downloadURLs.filter((url, index) => url !== null && downloadURLs.indexOf(url) === index);
+    setLinkVals(filteredLinks);
+    })
+    .catch((error) => {
+    console.error("Error fetching images from Firebase Storage:", error);
+    });
+  }, []);
 
   useEffect(() => {
     AOS.init();
@@ -96,7 +120,8 @@ function Products() {
   return (
     <div className="products">
       {getPaginatedItems(items, currentPage, itemsPerPage).map((item, index) => (
-        <Card key={index} title={item.ProductName} desc={item.Description} insta={item.Insta} store={links[index]} />
+        <Card key={index} title={item.ProductName} desc={item.Description} insta={item.Insta} 
+        store={links[index]} resized={linkvals[index]} />
       ))}
       <div className="pagination">
         <button onClick={handlePreviousPage} disabled={currentPage === 1} className="btn bg-light">Prev</button>

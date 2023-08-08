@@ -42,6 +42,30 @@ function Upload(){
         });
     };
 
+    function resizeImage(img, maxWidth) {
+        const aspectRatio = img.width / img.height;
+        let width = img.width;
+        let height = img.height;
+    
+        // Resize the image if needed
+        if (width > maxWidth) {
+          width = maxWidth;
+          height = width / aspectRatio;
+        }
+    
+        // Create a canvas element to draw the resized image
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+    
+        // Convert the canvas image to a Blob in JPEG format with desired quality
+        return new Promise((resolve) => {
+          canvas.toBlob((blob) => resolve(blob), "image/jpeg", 0.95); // 0.95 is the quality of the JPEG image (0 to 1).
+        });
+      }
+
     function handleChange(e){
         if (e.target.files[0]) {
             const y = new Date().getTime();
@@ -55,34 +79,41 @@ function Upload(){
             };
         
             imageCompression(e.target.files[0], options)
-              .then((compressedFile) => {
-                // Convert the compressed image to WebP format using canvas
-                const reader = new FileReader();
-                reader.onload = async (event) => {
-                  const img = new Image();
-                  img.onload = async () => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, img.width, img.height);
-        
-                    // Convert the image to WebP format
-                    canvas.toBlob(async (webpBlob) => {
-                      // Upload the WebP blob to Firebase Storage
-                      await uploadBytes(imgRef, webpBlob);
-                      console.log('WebP file uploaded:', x);
-        
-                    }, 'image/webp', 0.85); // 1 is the quality of the WebP image (0 to 1).
-                  };
-                  img.src = event.target.result;
+            .then((compressedFile) => {
+              // Convert the compressed image to WebP format using canvas
+              const reader = new FileReader();
+              reader.onload = async (event) => {
+                const img = new Image();
+                img.onload = async () => {
+                  // Resize the image before converting to WebP
+                  const resizedBlob = await resizeImage(img, 500);
+    
+                  // Upload the resized image to Firebase Storage
+                  const resizedImgRef = ref(storage, `imagesResized/${y}`);
+                  await uploadBytes(resizedImgRef, resizedBlob);
+                  console.log("Resized image uploaded:", resizedImgRef.fullPath);
+    
+                  const canvas = document.createElement("canvas");
+                  canvas.width = img.width;
+                  canvas.height = img.height;
+                  const ctx = canvas.getContext("2d");
+                  ctx.drawImage(img, 0, 0, img.width, img.height);
+    
+                  // Convert the image to WebP format
+                  canvas.toBlob(async (webpBlob) => {
+                    // Upload the WebP blob to Firebase Storage
+                    await uploadBytes(imgRef, webpBlob);
+                    console.log("WebP file uploaded:", x);
+                  }, "image/webp", 0.85); // 0.85 is the quality of the WebP image (0 to 1).
                 };
-                reader.readAsDataURL(compressedFile);
-              })
-              .catch((error) => {
-                console.error('Error compressing image:', error);
-              });
-          }
+                img.src = event.target.result;
+              };
+              reader.readAsDataURL(compressedFile);
+            })
+            .catch((error) => {
+              console.error("Error compressing image:", error);
+            });
+        }
     }
 
     const PostData = async(e)=>{
