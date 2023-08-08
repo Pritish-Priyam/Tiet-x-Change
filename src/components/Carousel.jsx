@@ -52,7 +52,10 @@ function Carousel(){
             </div>
             <div class="carousel-inner">
             <div class="carousel-item">
-            <img class="bd-placeholder-img img1" src={links[0]} width="100%" height="100%"></img>
+            <img class="bd-placeholder-img img1" src={links[0]}
+                 srcSet={`${links[1]} 880w`}
+
+                 width="100%" height="100%"></img>
                 <div class="container">
                 <div class="carousel-caption text-start">
                     <h1>Stationary and Stuff.</h1>
@@ -62,7 +65,10 @@ function Carousel(){
                 </div>
             </div>
             <div class="carousel-item active">
-                <img class="bd-placeholder-img img2" src={links[1]} width="100%" height="100%"></img>
+                <img class="bd-placeholder-img img2" src={links[2]}      
+                srcSet={`${links[3]} 880w`}
+ 
+                width="100%" height="100%" loading="lazy"></img>
 
                 <div class="container">
                 <div class="carousel-caption">
@@ -73,7 +79,10 @@ function Carousel(){
                 </div>
             </div>
             <div class="carousel-item">
-            <img class="bd-placeholder-img img3" src={links[2]} width="100%" height="100%"></img>
+            <img class="bd-placeholder-img img3" src={links[4]}
+                 srcSet={`${links[5]} 880w`}
+    
+                 width="100%" height="100%" loading="lazy"></img>
                 <div class="container">
                 <div class="carousel-caption text-end">
                     <h1>Gadgets for Geeks.</h1>

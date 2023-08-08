@@ -73,7 +73,7 @@ function Upload(){
                       await uploadBytes(imgRef, webpBlob);
                       console.log('WebP file uploaded:', x);
         
-                    }, 'image/webp', 1); // 1 is the quality of the WebP image (0 to 1).
+                    }, 'image/webp', 0.85); // 1 is the quality of the WebP image (0 to 1).
                   };
                   img.src = event.target.result;
                 };
