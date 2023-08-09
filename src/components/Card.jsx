@@ -47,7 +47,7 @@ function Card(props) {
   }
 
   return (
-    <div className="CardContainer " data-aos="fade-in" data-aos-duration="400" data-aos-delay="0">
+    <div className="CardContainer" data-aos="fade-in" data-aos-duration="400" data-aos-delay="0">
       <div className="card" style={{ width: "19rem" }}>
         <img
           src={loading ? "" : props.store}
@@ -62,9 +62,9 @@ function Card(props) {
           <p className="card-text" style={{ display: state }}>
             Insta ID: {props.insta}
           </p>
-          <a className="btn btn-primary" onClick={dispDesc}>
+          <button className="btn btn-primary" onClick={dispDesc}>
             {val}
-          </a>
+          </button>
         </div>
       </div>
     </div>
