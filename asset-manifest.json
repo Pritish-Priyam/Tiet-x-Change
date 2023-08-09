@@ -1,16 +1,20 @@
 {
   "files": {
-    "main.css": "/Tiet-x-Change/static/css/main.900406e6.css",
-    "main.js": "/Tiet-x-Change/static/js/main.d94c1e0d.js",
+    "main.css": "/Tiet-x-Change/static/css/main.a32a5e12.css",
+    "main.js": "/Tiet-x-Change/static/js/main.984f0bca.js",
     "static/js/787.cc4f6b81.chunk.js": "/Tiet-x-Change/static/js/787.cc4f6b81.chunk.js",
     "static/media/login_bg.jpg": "/Tiet-x-Change/static/media/login_bg.bc47da6b071f20ec3376.jpg",
+    "static/media/100.webp": "/Tiet-x-Change/static/media/100.d91d9fba8388aedb421a.webp",
+    "static/media/200.webp": "/Tiet-x-Change/static/media/200.a5581fdb992ceec696e6.webp",
+    "static/media/201.webp": "/Tiet-x-Change/static/media/201.92c055b297f981768752.webp",
+    "static/media/101.webp": "/Tiet-x-Change/static/media/101.8982e18f034c040ce61d.webp",
     "index.html": "/Tiet-x-Change/index.html",
-    "main.900406e6.css.map": "/Tiet-x-Change/static/css/main.900406e6.css.map",
-    "main.d94c1e0d.js.map": "/Tiet-x-Change/static/js/main.d94c1e0d.js.map",
+    "main.a32a5e12.css.map": "/Tiet-x-Change/static/css/main.a32a5e12.css.map",
+    "main.984f0bca.js.map": "/Tiet-x-Change/static/js/main.984f0bca.js.map",
     "787.cc4f6b81.chunk.js.map": "/Tiet-x-Change/static/js/787.cc4f6b81.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.900406e6.css",
-    "static/js/main.d94c1e0d.js"
+    "static/css/main.a32a5e12.css",
+    "static/js/main.984f0bca.js"
   ]
 }
