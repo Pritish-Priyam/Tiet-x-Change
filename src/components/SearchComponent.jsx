@@ -22,7 +22,6 @@ function SearchComponent() {
   const [val, setVal] = useState("Know more");
   const [disp, setDisp] = useState("block");
 
-
   function dispDesc() {
     if (val === "Show less") {
       setVal("Know more");
@@ -33,14 +32,6 @@ function SearchComponent() {
       setVal("Show less");
       setDisp("none");
     }
-  }
-
-  useEffect(() => {
-    fetchDataAndLinks();
-  }, []);
-
-  if (loading) {
-    return <CardSkeleton />;
   }
 
   const fetchDataAndLinks = async () => {
@@ -83,12 +74,21 @@ function SearchComponent() {
     return { filteredData, filteredLinks };
   };
 
+  useEffect(() => {
+    fetchDataAndLinks();
+  }, []);
+
+  if (loading) {
+    return <CardSkeleton />;
+  }
+
   // Apply the filter here based on the search query
   const { filteredData, filteredLinks } = filterDataBySearchValue(items, searchResults);
 
   return (
     <div className="search-bg">
-      <h1 className='res'>Search Results:</h1>
+    {console.log("DATAAA -> ",filteredData)}
+      <h1 className='res'>Search Results</h1>
       {loading ? (
         <p className='mx-3' style={{color:"white"}}>Loading ...</p>
       ) : (
@@ -97,13 +97,13 @@ function SearchComponent() {
             <div class="card" style={{width:"18rem"}}>
               <img src={filteredLinks[index]} class="card-img-top" alt="..." />
               <div className="card-body">
-                <h5 className="card-title">{result.title || <Skeleton />}</h5>
-                <p className="card-text">{result.desc || <Skeleton count={5}/>}</p>
+                <h5 className="card-title">{result.ProductName}</h5>
+                <p className="card-text">{result.Description}</p>
                 <p className="card-text" style={{ display: state }}>
-                  Insta ID: {result.insta}
+                  Insta ID: {result.Insta}
                 </p>
                 <p>
-                  Price: {result.price?`₹ ${result.price}`: `Not specified`} 
+                  Price: {result.Price?`₹ ${result.Price}`: `Not specified`} 
                 </p>
                 <button className="btn btn-primary" onClick={dispDesc}>
                   {val}

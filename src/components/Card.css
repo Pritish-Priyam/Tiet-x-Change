@@ -27,21 +27,21 @@
   width: 80%;
   height: 20px;
   margin: 10px 0;
-  background-color: #666; /* Darker gray color for placeholder */
+  background-color: #9b9292; /* Darker gray color for placeholder */
 }
 
 .skeleton-desc {
   width: 100%;
   height: 80px;
   margin: 10px 0;
-  background-color: #666;
+  background-color: #aca0a0;
 }
 
 .skeleton-insta {
   width: 50%;
   height: 20px;
   margin: 10px 0;
-  background-color: #666;
+  background-color: #998e8e;
 }
 
 .CardImg{
