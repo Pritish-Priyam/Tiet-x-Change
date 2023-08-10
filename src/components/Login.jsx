@@ -53,12 +53,12 @@ function Login(){
             signInWithEmailAndPassword(auth,details.Username,details.Password)
             .then((userCredential) => {
                 console.log(userCredential)
-                window.location="/Tiet-x-Change";
+                window.location="/";
             })
             .catch((error) => {
                 console.log(error);
                 alert("Please enter valid email or password");
-                window.location = "/Tiet-x-Change/login";
+                window.location = "/login";
             });
         };
 

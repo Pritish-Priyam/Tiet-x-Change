@@ -27,6 +27,7 @@ const AuthDetails = () =>{
     const userSignOut = () => {
         signOut(auth).then( () => {
                 console.log("Successfully logged out")
+                alert("Logged out successfully");
             }).catch( error => console.log(error))
     }
 

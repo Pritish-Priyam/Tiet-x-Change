@@ -9,7 +9,7 @@ import "./App.css";
 import Skeleton from "react-loading-skeleton";
 
 function Carousel(){
-    const [links, setLinks] = useState([]);
+    /*const [links, setLinks] = useState([]);
     
     useEffect(() => {
         const folderRef = Ref(storage, `CarouselBg/`);
@@ -27,6 +27,13 @@ function Carousel(){
         // Set the download URLs in the state
         const filteredLinks = downloadURLs.filter((url, index) => url !== null && downloadURLs.indexOf(url) === index);
         setLinks(filteredLinks);
+
+
+         // Preload images
+         filteredLinks.forEach((url) => {
+            const image = new Image();
+            image.src = url;
+          });
         })
         .catch((error) => {
         console.error("Error fetching images from Firebase Storage:", error);
@@ -51,30 +58,28 @@ function Carousel(){
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
             </div>
-            <div class="carousel-inner">
-            <div class="carousel-item">
-            <img class="bd-placeholder-img img1" src={links[0]}
-                 srcSet={`${links[1]} 880w`}
-                 width="100%" height="100%" alt="Stationary items"></img>
+            <div class="carousel-inner ">
+            <div class="carousel-item ">
+            <div class="bd-placeholder-img img1" 
+                 width="100%" height="100%" alt="Stationary items"></div>
                 <div class="container">
                 <div class="carousel-caption text-start">
-                    <h1>Stationary and Stuff.</h1>
+                    <span className="carousel-head">Stationary and Stuff.</span>
                     <p>We got you covered.</p>
-                    <p><Link to="/register"><button class="btn btn-lg btn-primary">Sign up today</button></Link></p>
+                    <p><Link to="/register"><button class="btn btn-md btn-primary">Sign up</button></Link></p>
                 </div>
                 </div>
             </div>
             <div class="carousel-item active">
-                <img class="bd-placeholder-img img2" src={links[2]}      
-                srcSet={`${links[3]} 880w`}
+                <div class="bd-placeholder-img img2"
                 alt="Various items"
-                width="100%" height="100%" ></img>
+                width="100%" height="100%" ></div>
 
                 <div class="container">
                 <div class="carousel-caption">
-                    <h1> From mattresses to buckets.</h1>
+                    <span className="carousel-head"> From mattresses to buckets.</span>
                     <p>We got you covered.</p>
-                    <p><Link to="/help"><button class="btn btn-lg btn-primary">Learn more</button></Link></p>
+                    <p><Link to="/help"><button class="btn btn-md btn-primary">Learn more</button></Link></p>
                 </div>
                 </div>
             </div>

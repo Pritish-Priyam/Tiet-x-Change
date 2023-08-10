@@ -121,7 +121,7 @@ function Products() {
     <div className="products">
       {getPaginatedItems(items, currentPage, itemsPerPage).map((item, index) => (
         <Card key={index} title={item.ProductName} desc={item.Description} insta={item.Insta} 
-        store={links[index]} resized={linkvals[index]} />
+        store={links[index]} resized={linkvals[index]} price={item.Price} />
       ))}
       <div className="pagination">
         <button onClick={handlePreviousPage} disabled={currentPage === 1} className="btn bg-light">Prev</button>

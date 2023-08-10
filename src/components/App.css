@@ -21,6 +21,11 @@ input::placeholder {
   overflow-x: hidden;
 }
 
+.NavBAR{
+  background-color: #1a1d21;
+  color: white;
+}
+
 .search_wrapper{
   width: 50%;
   display: flex;
@@ -102,8 +107,12 @@ a:hover{
   width: fit-content;
   min-width: 5rem;
   cursor: pointer;
-  border-bottom: 2px solid;
-  animation: border-pulse 2.5s ease infinite;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.681);
+}
+
+.login_btn:hover{
+  animation: border-pulse 1.5s linear infinite;
+
 }
 
 .upload_btn{
@@ -159,12 +168,14 @@ a:hover{
 
 .img1{
   opacity: 0.85;
+  background-image: url("./images/100.webp");
   background-size: cover;
   aspect-ratio: 1;
 }
 
 .img2{
   opacity: 0.88;
+  background-image: url("./images/200.webp");
   background-size: cover;
   aspect-ratio: 1;
 }
@@ -188,8 +199,8 @@ a:hover{
   min-height: 70vh;
   justify-content: flex-start;
   align-items: center;
-  padding-inline-start: 35px;
-  column-gap: 25px;
+  padding-inline-start: 2vw;
+  column-gap: 15px;
   padding-bottom: 60px;
   row-gap: 35px;
   border-top: 2px solid white;
@@ -216,6 +227,11 @@ a:hover{
   margin: 0;
 }
 
+.searchRes{
+      position: absolute;
+      top: -50px;
+      z-index: 1;
+}
 .footer_style{
   padding: 10px;
   backdrop-filter: blur(10px);
@@ -260,7 +276,26 @@ a:hover{
 }
 
 .carousel-caption{
-  backdrop-filter: blur(2px);
+ backdrop-filter: blur(2px);
+}
+
+.carousel-head{
+  font-size: 2.85rem;
+}
+
+.res{
+  color: rgb(152, 193, 230);
+  font-size: 1.80rem;
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+  font-family: 'Titillium Web',monospace;
+}
+
+.search-bg{
+  background-color: #031a2b;
+  width: 100vw;
+  height: 100vh;
 }
 
 @keyframes border-pulse {
@@ -287,31 +322,43 @@ a:hover{
   }
 }
 
-@media screen and (max-width: 992px) {
+
+@media screen and (max-width: 880px) {
+  .img1{
+    opacity: 0.85;
+    background-image: url("./images/101.webp");
+    background-size: cover;
+    aspect-ratio: 1;
+  }
+  
+  .img2{
+    opacity: 0.88;
+    background-image: url("./images/201.webp");
+    background-size: cover;
+    aspect-ratio: 1;
+  }
   
   .extra_icons{
     display: none;
   }
 
   .carousel-item{
-    height: 45vh;
+    height: 35vh;
   }
 
-  .search_bar{
-    display: none;
+  .carousel-head{
+    font-size: 1.85rem;
+    font-weight: 400;
   }
 
-  .search_wrapper{
-    display: none;
-  }
-
-  .search_btn{
-    display: none;
-  }
 
   .NavBar{
     display: flex;
     justify-content: space-around;
+  }
+
+  #txC{
+    display: none;
   }
 
   .products{
@@ -325,19 +372,35 @@ a:hover{
   }
   
   .upload_btn{
-    font-size: 18px;
+    font-size: 14px;
     width: fit-content;
-    padding: 0px 10px;
+    padding: 0px 6px;
   }
 
   .login_btn{
     width: fit-content;
-    font-size: 18px;
+    font-size: 14px;
+    min-width: fit-content;
+    margin: 0;
   }
   
   .NavBtn{
     width: fit-content;
-    font-size: 16px;
+    font-size: 12px;
+  }
+    
+  .search_bar{
+    padding: 4px;
+  }
+
+  .search_btn{
+    padding: 0px;
+    font-size: 14px;
+    line-height: 0;
+  }
+
+  #helper{
+    display: block;
   }
 }
 

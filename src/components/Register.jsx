@@ -68,7 +68,7 @@ function Register(){
             handlePost();
 
         
-            window.location = "/Tiet-x-Change";
+            window.location = "/";
             
            
         }

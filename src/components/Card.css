@@ -71,6 +71,8 @@
     border-radius: 5px;
     overflow: hidden;
     width: 100%;
+    width: 19rem;
+    min-width: 18rem;   
 }
 .card-img-top{
     aspect-ratio: 1;
@@ -168,10 +170,8 @@
         row-gap: 10px;
     }
 
-    .Card{
-        width: 85vw;
-        height: 45vh;
-        min-height: fit-content;  
-        border-radius: 15px;
+    .card{
+        width: 18.5rem;
+        min-width: 16rem;
     }
 }

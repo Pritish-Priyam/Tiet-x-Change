@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import Upload from "./Upload";
 import Login from "./Login";
 import Help from "./Help";
+import SearchComponent from "./SearchComponent";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/upload" element={<Upload />}/>
       <Route path="/help" element={<Help />} />
+      <Route path="/search-result" element={<SearchComponent />} />
     </Routes>
   );
 }

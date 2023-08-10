@@ -48,19 +48,24 @@ function Card(props) {
 
   return (
     <div className="CardContainer" data-aos="fade-in" data-aos-duration="400" data-aos-delay="0">
-      <div className="card" style={{ width: "19rem" }}>
+      <div className="card">
+        {console.log(loading)}
         <img
-          src={loading ? "" : props.store}
+          src={loading ? "" : `${props.store}`}
           className="card-img-top"
           loading="lazy"
           srcSet={loading ? "" : `${props.resized} 880w`}
-          alt=""
+          alt="..."
+          onError={(e) => console.error("Image loading error:", e)}
         />
         <div className="card-body">
           <h5 className="card-title">{props.title || <Skeleton />}</h5>
           <p className="card-text">{props.desc || <Skeleton count={5}/>}</p>
           <p className="card-text" style={{ display: state }}>
             Insta ID: {props.insta}
+          </p>
+          <p>
+            Price: {props.price?`₹ ${props.price}`: `Not specified`} 
           </p>
           <button className="btn btn-primary" onClick={dispDesc}>
             {val}

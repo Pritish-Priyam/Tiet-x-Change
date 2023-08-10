@@ -21,7 +21,7 @@ function Upload(){
             ProductName:"",
             Description:"",
             Insta:"",
-            StorageLink:"",
+            Price:"",
         }
     )
 
@@ -38,7 +38,7 @@ function Upload(){
             console.log(error);
             setVal(0);
             alert("Please enter valid email or password");
-            window.location = "/Tiet-x-Change/Upload";
+            window.location = "/Upload";
         });
     };
 
@@ -119,7 +119,7 @@ function Upload(){
     const PostData = async(e)=>{
         e.preventDefault();
         signIn(e);
-        const {Name,Username,Password,ProductName,Description,Insta,StorageLink} = details;
+        const {Name,Username,Password,ProductName,Description,Insta,Price} = details;
         if(val == 1){
         const res = await fetch("https://tiet-xchange-default-rtdb.firebaseio.com/UploadResult.json",
         {
@@ -128,11 +128,11 @@ function Upload(){
                 'Content-Type': 'application/json'
             },
             body:JSON.stringify({
-                Name,ProductName,Username,Password,Description,Insta,StorageLink,
+                Name,ProductName,Username,Password,Description,Insta,Price,
             })
         });
 
-        window.location="/Tiet-x-Change"; }
+        window.location="/"; }
 
     }
 
@@ -172,6 +172,14 @@ function Upload(){
                 onChange={(e)=>
                     setDetails({...details,Insta:e.target.value})}
                 value={details.Insta} 
+                required
+                />
+
+                <label htmlFor="Price">Price</label>
+                <input className="inpData" type="number" placeholder="The selling price in (Rs)" id="insta_user"
+                onChange={(e)=>
+                    setDetails({...details,Price:e.target.value})}
+                value={details.Price} 
                 required
                 />
 
