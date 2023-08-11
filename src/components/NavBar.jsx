@@ -66,7 +66,7 @@ function NavBar(){
     
     return (
         <div className="NavBar" id="Nav" data-aos="fade-down">
-            <button className="NavBtn" id="txC">T x C</button>
+            <Link to="/"><button className="NavBtn" id="txC">T x C</button></Link>
             <div className="search_wrapper">
             <input type="search" placeholder="What are you looking for today!" className="search_bar" 
             onChange={handleSearchChange}

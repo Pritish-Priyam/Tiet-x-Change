@@ -6,11 +6,11 @@ import { storage } from "./Firebase";
 import { listAll } from "firebase/storage";
 import { getDownloadURL } from "firebase/storage";
 import { getDatabase, onValue, ref, get, child } from "firebase/database";
-import { database } from "./Firebase";
-import { useNavigate } from 'react-router-dom';
+import { database } from "./Firebase"; 
 import { ref as Ref} from "firebase/storage";
-import Skeleton from 'react-loading-skeleton';
 import CardSkeleton from './CardSkeleton';
+import NavBar from './NavBar';
+import Footer from './Footer';
 
 function SearchComponent() {
   const location = useLocation();
@@ -86,15 +86,18 @@ function SearchComponent() {
   const { filteredData, filteredLinks } = filterDataBySearchValue(items, searchResults);
 
   return (
-    <div className="search-bg">
-    {console.log("DATAAA -> ",filteredData)}
-      <h1 className='res'>Search Results</h1>
+    <div className="search-bg" style={{overflowX:"hidden"}}>
+      <NavBar />
       {loading ? (
         <p className='mx-3' style={{color:"white"}}>Loading ...</p>
-      ) : (
-        <div className="products">
-          {filteredData.map((result, index) => (
-            <div class="card" style={{width:"18rem"}}>
+      ) : (filteredData.length == 0? <div className="d-flex py-5 my-5" 
+          style={{color:"white",display:"flex",justifyContent:"center",fontSize:"24px",alignItems:"center"}}>
+          Oops! No item found.
+          </div>  :
+        <div className="products" style={{minHeight:"75vh"}}>
+          {
+          filteredData.map((result, index) => (
+            <div class="card" style={{width:"18.5rem",minHeight:"420px"}}>
               <img src={filteredLinks[index]} class="card-img-top" alt="..." />
               <div className="card-body">
                 <h5 className="card-title">{result.ProductName}</h5>
@@ -113,6 +116,7 @@ function SearchComponent() {
           ))}
         </div>
       )}
+      <Footer style={{position:"relative",top:"10px"}} />
     </div>
   );
 }

@@ -7,7 +7,7 @@ function Help(){
     <div className="faqContainer">
       <h1 className="faqTitle animate-character">FAQ</h1>
       <div className="faqWrapper">
-      <div class="card ccardH mb-3" style={{maxWidth: "19rem"}}>
+      <div class="card cardH mb-3" style={{maxWidth: "19rem"}}>
         <div class="card-header h5">What is TIETxChange?</div>
         <div class="card-body">
 

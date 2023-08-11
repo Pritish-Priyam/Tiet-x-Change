@@ -11,37 +11,45 @@
 
 .skeleton{
     animation: skeleton-loading 1s linear infinite alternate;
+    transform-style: preserve-3d;
+    animation: rotateX 2s ease-in-out infinite;
   }
   
   @keyframes skeleton-loading{
     0%{
-        background-color: hsl(200, 20%, 70%);
+        background-color: hsla(221, 94%, 19%, 0.677);
     }
   
     100%{
-        background-color: hsl(200, 20%, 95%);
+        background-color: hsla(204, 95%, 17%, 0.652);
     }
   }
+
+.cardCen{
+    position: relative;
+    top: 30px;
+    left: 30px;
+}
 
 .skeleton-title {
   width: 80%;
   height: 20px;
   margin: 10px 0;
-  background-color: #9b9292; /* Darker gray color for placeholder */
+  background-color: #524f4fad; /* Darker gray color for placeholder */
 }
 
 .skeleton-desc {
   width: 100%;
   height: 80px;
   margin: 10px 0;
-  background-color: #aca0a0;
+  background-color: #5a5555ac;
 }
 
 .skeleton-insta {
   width: 50%;
   height: 20px;
   margin: 10px 0;
-  background-color: #998e8e;
+  background-color: #6661619d;
 }
 
 .CardImg{
@@ -73,12 +81,23 @@
     width: 100%;
     width: 19rem;
     min-width: 18rem;   
+
 }
 .card-img-top{
     aspect-ratio: 1;
     height: 160px;
 }
 
+.WholeBody{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    background-color: #031a2b;
+    margin-right: 2px;
+}
 .card img {
     /* Set the image size and transition properties */
     width: 100%;
@@ -156,6 +175,11 @@
 
 @media screen and (max-width: 992px) {
 
+    .WholeBody{
+        flex-direction: column;
+        margin: 0;
+    }
+
     .CardContainer{
         flex-direction: column;
         flex-wrap: wrap;
@@ -175,3 +199,17 @@
         min-width: 16rem;
     }
 }
+.searchNav{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+@keyframes rotateX {
+    0% {
+      transform: rotateX(0deg);
+    }
+    100% {
+      transform: rotateX(360deg);
+    }
+  }

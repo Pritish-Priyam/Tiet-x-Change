@@ -31,7 +31,7 @@ function Upload(){
         
         signInWithEmailAndPassword(auth,details.Username,details.Password)
         .then((userCredential) => {
-            console.log(userCredential);
+            //console.log(userCredential);
             setVal(1);
         })
         .catch((error) => {
@@ -139,7 +139,7 @@ function Upload(){
     return(
  
         <div className="RegisterPage">
-                <div class="alert alert-danger alert-dismissible show">
+                <div class="alert alert-primary alert-dismissible show" style={{zIndex:"100"}}>
                     <strong>Alert!</strong> Please ensure you have already signed up.
                     <button
                         type="button"

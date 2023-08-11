@@ -51,12 +51,11 @@ function Card(props) {
       <div className="card">
         {console.log(loading)}
         <img
-          src={loading ? "" : `${props.store}`}
+          src={props.store}
           className="card-img-top"
           loading="lazy"
           srcSet={loading ? "" : `${props.resized} 880w`}
           alt="..."
-          onError={(e) => console.error("Image loading error:", e)}
         />
         <div className="card-body">
           <h5 className="card-title">{props.title || <Skeleton />}</h5>
